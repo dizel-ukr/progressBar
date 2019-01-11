@@ -1,0 +1,10 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+section {
+	height: 700px;
+}
+section:nth-child(odd) {
+	background: grey;
+}
