@@ -12,15 +12,10 @@
 			background: "red",
 			transition: "width 125ms linear"
 		},
-		windowWidth,
-		windowHeight,
-		documentHeight;
-
-	var getSize = function(){
 		windowWidth = window.innerWidth,
 		windowHeight = window.innerHeight,
 		documentHeight = document.body.clientHeight;
-	};
+
 
 	var createBar = function() {
 		var barWrap = document.createElement('div'),
@@ -39,14 +34,17 @@
 	  		document.getElementById("bar").style[k] = stylesBar[k];
 	};
 
-	window.onscroll = function () {
-			var x = window.pageYOffset * 100 / (documentHeight - windowHeight),
-				z = windowWidth * x / 100;
+								
+	if (windowHeight < documentHeight){
+		createBar();
 
-			document.getElementById('bar').style.width = z + 'px';
-	};							
+		window.onscroll = function () {
+			console.log('scroll');
+				var x = window.pageYOffset * 100 / (documentHeight - windowHeight),
+					z = windowWidth * x / 100;
 
-	getSize();
-	createBar();
+				document.querySelector('#bar').style.width = z + 'px';
+		};
+	}
 
 })();
