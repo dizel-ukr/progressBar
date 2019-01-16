@@ -28,23 +28,22 @@
 		document.body.appendChild(barWrap);
 		
 		for (var i in styles)
-	  		document.getElementById("barWrapper").style[i] = styles[i];
+	  		document.querySelector("#barWrapper").style[i] = styles[i];
 
 	  	for (var k in stylesBar)
-	  		document.getElementById("bar").style[k] = stylesBar[k];
+	  		document.querySelector("#bar").style[k] = stylesBar[k];
 	};
 
+	var changeSize = function(){
+		var x = window.pageYOffset * 100 / (documentHeight - windowHeight),
+			z = windowWidth * x / 100;
+
+		document.querySelector('#bar').style.width = z + 'px';
+	};
 								
 	if (windowHeight < documentHeight){
 		createBar();
-
-		window.onscroll = function () {
-			console.log('scroll');
-				var x = window.pageYOffset * 100 / (documentHeight - windowHeight),
-					z = windowWidth * x / 100;
-
-				document.querySelector('#bar').style.width = z + 'px';
-		};
+		window.addEventListener('scroll', changeSize)
 	}
 
 })();
